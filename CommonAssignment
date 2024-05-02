@@ -1,0 +1,73 @@
+package com.gradescope.CommonAssignment; // DO NOT DELETE THIS PACKAGE
+import java.util.Scanner;
+	// Question #1-A.The main method is responsible of collecting the User's input and store them in different variable. The emailinfo method is responsible of using the first name and last name to create an email address.
+	//the passwordinfo is responsible of creating a password using the user's input and return the complete creation to the main method.
+	// laslty the resultscreen method is responsible of displaying all the crafted information to the user base on the inputs.
+	// Question #1-B. the first name is the only variable that is passed to all the methods.
+	// Question #1-C. The return values should send back the crafted information based on the inputs.
+	// FYI --> THE PASSWORD METHOD REQUIRE 3 LETTERS OF THE " FIRST NAME" NOT THE LAST. THEREFORE I CHANGE IT IN THE METHOD PARAMETERS.
+	public class CommonAssignment {
+	    public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+	        // Prompt user for first name, last name, favorite car maker, and birth year. //////////////////////////////////////////
+	        System.out.print("Enter your first name: ");
+			String s1=scanner.nextLine();// First name is stored in s1
+			
+			//Getting the last name
+			System.out.print("Enter your last name: ");
+			String s2=scanner.nextLine();// Last name is stored in s2
+			
+			// Getting the security question
+			System.out.print("(Security Question) Favorite car maker: ");
+			String s3=scanner.nextLine();// Security question is stored in s3
+			
+			// Getting the birth year
+			System.out.print("Enter your birth year: ");
+			int s4=scanner.nextInt(); // The birth year is stored in s4
+	       
+	        // CALL PASSWORD METHOD ///////////////////////////////////////////////////////////////////////////////////
+			String s5=EmailInfo(s1,s2);
+			
+			String s6=PasswordInfo(s1,s3,s4);
+	     
+	        // CALL RESULT SCREEN METHOD /////////////////////////////////////////////////////////////////////////// // Display the results.
+	       resultScreen(s1,s2,s5,s6);
+	      
+	       
+	    }
+	 // EMAIL REGISTRATION METHOD (Overloading methods) //////////////////////////////////////////////////////////////////////////////////////////////////////////
+	    public static String EmailInfo(String first, String last) {
+	        // Convert the first letter of first name to lowercase and concatenate with last name (in lowercase).
+	    	first.toLowerCase();
+	    	char z=first.charAt(0);
+	    	String email=z+"."+last+"@kean.edu";
+	    	return email.toLowerCase();
+	    	
+	    	
+	       
+	    }
+	// PASSWORD METHOD (Overloading methods) /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	    public static String PasswordInfo(String first, String carMaker, int year) {
+	        // The password should use the full last name in uppercase, not just the first three characters.
+	       first.toUpperCase();
+	  
+	      
+	        // Take the first three letters of the car maker, ensuring it's in uppercase.
+	        String carMakerPart = carMaker.length() >= 3 ? carMaker.substring(0, 3) : carMaker;
+	       
+	        // Concatenate the last name part, year, and car maker part to form the password.
+	        String password=first.substring(0,3)+year+carMakerPart;
+	        return password.toUpperCase();
+	    }
+	    // RESULT SCREEN METHOD ////////////////////////////////////////////////////////////////////////////////////////////////////////
+	    public static void resultScreen(String first, String last, String email, String password) {
+	        // Display the information with proper formatting.
+	        System.out.println("================================");
+	        System.out.println(first+" "+last);
+	        System.out.println("Kean email: "+ email);
+	        System.out.println("kean password: "+ password);
+	        System.out.println("================================");
+	    }
+	}
+
+
